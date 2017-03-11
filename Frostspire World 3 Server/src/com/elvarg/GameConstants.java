@@ -9,8 +9,6 @@ import com.elvarg.world.model.Position;
  * @author Swiffy
  */
 public class GameConstants {
-	
-	//test
 
 	/**
 	 * The directory of the cache files.
