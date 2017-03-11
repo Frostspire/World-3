@@ -3,8 +3,8 @@
   "password": "asdf",
   "staff-rights": "ADMINISTRATOR",
   "position": {
-    "x": 2270,
-    "y": 4697,
+    "x": 3094,
+    "y": 3494,
     "z": 0
   },
   "spell-book": "NORMAL",
@@ -25,7 +25,7 @@
   "fire-immunity": 0,
   "teleblock-timer": 0,
   "prayerblock-timer": 0,
-  "skull-timer": -270875,
+  "skull-timer": -270945,
   "target-kills": 0,
   "normal-kills": 1,
   "deaths": 1,
@@ -236,7 +236,7 @@
     {
       "id": -1,
       "amount": 0,
-      "slot": 0
+      "slot": 12
     },
     {
       "id": -1,
