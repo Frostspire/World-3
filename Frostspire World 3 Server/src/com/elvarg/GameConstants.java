@@ -9,6 +9,8 @@ import com.elvarg.world.model.Position;
  * @author Swiffy
  */
 
+//last test
+
 public class GameConstants {
 
 	/**
