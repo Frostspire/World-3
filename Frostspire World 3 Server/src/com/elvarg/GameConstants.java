@@ -9,6 +9,9 @@ import com.elvarg.world.model.Position;
  * which affect the game in different ways.
  * @author Swiffy
  */
+
+//test12345
+
 public class GameConstants {
 
 	/**
