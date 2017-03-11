@@ -4,8 +4,6 @@ import com.elvarg.cache.impl.CacheConstants;
 import com.elvarg.world.model.Position;
 
 
-//Hello12321323321321323
-
 /**
  * A class containing different attributes
  * which affect the game in different ways.
