@@ -3,8 +3,8 @@
   "password": "asdf",
   "staff-rights": "ADMINISTRATOR",
   "position": {
-    "x": 3094,
-    "y": 3494,
+    "x": 2700,
+    "y": 3717,
     "z": 0
   },
   "spell-book": "NORMAL",
@@ -18,14 +18,14 @@
   "last-veng": 0,
   "running": true,
   "run-energy": 100,
-  "spec-percentage": 100,
+  "spec-percentage": 60,
   "recoil-damage": 0,
   "poison-damage": 0,
   "poison-immunity": 0,
   "fire-immunity": 0,
   "teleblock-timer": 0,
   "prayerblock-timer": 0,
-  "skull-timer": -270945,
+  "skull-timer": -271291,
   "target-kills": 0,
   "normal-kills": 1,
   "deaths": 1,
@@ -67,8 +67,8 @@
       "slot": 6
     },
     {
-      "id": -1,
-      "amount": 0,
+      "id": 995,
+      "amount": 4901980,
       "slot": 7
     },
     {
@@ -174,8 +174,8 @@
   ],
   "equipment": [
     {
-      "id": -1,
-      "amount": 0,
+      "id": 1163,
+      "amount": 1,
       "slot": 0
     },
     {
@@ -194,8 +194,8 @@
       "slot": 3
     },
     {
-      "id": -1,
-      "amount": 0,
+      "id": 1127,
+      "amount": 1,
       "slot": 4
     },
     {
@@ -209,8 +209,8 @@
       "slot": 0
     },
     {
-      "id": -1,
-      "amount": 0,
+      "id": 1079,
+      "amount": 1,
       "slot": 7
     },
     {
@@ -261,10 +261,10 @@
   ],
   "skills": {
     "level": [
-      60,
+      61,
       44,
       51,
-      53,
+      51,
       40,
       57,
       42,
@@ -286,7 +286,7 @@
       1
     ],
     "maxLevel": [
-      60,
+      61,
       44,
       51,
       53,
@@ -311,10 +311,10 @@
       1
     ],
     "experience": [
-      301134,
+      302334,
       60890,
-      113196,
-      140772,
+      122796,
+      143492,
       40000,
       218760,
       49600,
@@ -346,7 +346,7 @@
   "bank-0": [
     {
       "id": 995,
-      "amount": 499794904,
+      "amount": 494794404,
       "slot": 0
     }
   ],
