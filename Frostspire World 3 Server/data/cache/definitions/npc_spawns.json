@@ -1,0 +1,183 @@
+[
+	//Home NPCS
+	//Emblem Trader
+    {
+        "npcId": 315,
+        "x": 3095,
+		"y": 3503,
+		"walk-radius": 2
+    },
+    //Make-over mage
+	{
+        "npcId": 1306,
+        "x": 3087,
+		"y": 3498
+    },
+    //Warrior, sells melee items
+    {
+        "npcId": 1158,
+        "x": 3095,
+		"y": 3506
+    },
+    //Ranger, sells ranged items
+    {
+        "npcId": 1576,
+        "x": 3094,
+		"y": 3506
+    },
+    //Mage, sells magic items
+    {
+        "npcId": 3309,
+        "x": 3093,
+		"y": 3506
+    },
+    //Jewelry store
+    {
+        "npcId": 526,
+        "x": 3096,
+		"y": 3506
+    },
+    //Healer, sells consumables
+    {
+        "npcId": 3343,
+        "x": 3097,
+		"y": 3506
+    },
+    //Pure pker, sells... items, will probably be moved/removed
+    {
+        "npcId": 2660,
+        "x": 3087,
+		"y": 3504,
+		"walk-radius": 2
+    },
+    //General store
+    {
+        "npcId": 506,
+        "x": 3080,
+		"y": 3509,
+		"walk-radius": 2
+    },
+    //Skill NPCS
+    //Crafting
+    //Hide tanner
+    {
+        "npcId": 5809,
+        "x": 2932,
+		"y": 3284,
+		"walk-radius": 2
+    },
+    //Master crafter, sells crafting items
+    {
+        "npcId": 5810,
+        "x": 2930,
+		"y": 3288,
+		"walk-radius": 2
+    },
+    //Fishing
+    //Fishing spots
+    {
+        "npcId": 1497,
+        "x": 2599,
+		"y": 3419
+    },
+    {
+        "npcId": 1498,
+        "x": 2603,
+		"y": 3419
+    },
+    {
+        "npcId": 1499,
+        "x": 2602,
+		"y": 3423
+    },
+    {
+        "npcId": 1500,
+        "x": 2603,
+		"y": 3426
+    },
+    //Rock crabs
+    {
+        "npcId": 100,
+        "x": 2719,
+		"y": 3725,
+		"walk-radius": 3
+    },
+    {
+        "npcId": 100,
+        "x": 2719,
+		"y": 3725,
+		"walk-radius": 3
+    },
+    {
+        "npcId": 100,
+        "x": 2713,
+		"y": 3725,
+		"walk-radius": 3
+    },
+    {
+        "npcId": 100,
+        "x": 2715,
+		"y": 3730,
+		"walk-radius": 3
+    },
+    {
+        "npcId": 100,
+        "x": 2704,
+		"y": 3725,
+		"walk-radius": 3
+    },
+    {
+        "npcId": 100,
+        "x": 2697,
+		"y": 3726,
+		"walk-radius": 3
+    },
+    {
+        "npcId": 100,
+        "x": 2693,
+		"y": 3720,
+		"walk-radius": 3
+    },
+    {
+        "npcId": 100,
+        "x": 2695,
+		"y": 3715,
+		"walk-radius": 3
+    },
+    {
+        "npcId": 100,
+        "x": 2703,
+		"y": 3713,
+		"walk-radius": 3
+    },
+    {
+        "npcId": 100,
+        "x": 2705,
+		"y": 3718,
+		"walk-radius": 3
+    },
+    {
+        "npcId": 100,
+        "x": 2709,
+		"y": 3716,
+		"walk-radius": 3
+    },
+    {
+        "npcId": 100,
+        "x": 2715,
+		"y": 3712,
+		"walk-radius": 3
+    },
+    {
+        "npcId": 100,
+        "x": 2714,
+		"y": 3718,
+		"walk-radius": 3
+    },
+    {
+        "npcId": 100,
+        "x": 2699,
+		"y": 3720,
+		"walk-radius": 3
+    }
+]
