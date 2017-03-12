@@ -8,8 +8,6 @@ import java.io.File;
  * @author Seven
  */
 
-//last test pt 2
-
 public final class Configuration {
 	
 	private Configuration() {
