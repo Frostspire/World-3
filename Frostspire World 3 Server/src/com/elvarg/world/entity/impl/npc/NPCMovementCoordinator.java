@@ -36,7 +36,7 @@ public class NPCMovementCoordinator {
 		//If walk radius is 0, that means the npc shouldn't walk around.
 		//HOWEVER: Only if npc is home. Because the npc might be retreating 
 		//from a fight.
-		if(npc.getDefinition().getWalkRadius() == 0) {
+		if(npc.getWalkRadius() == 0) {
 			if (coordinateState == CoordinateState.HOME) {
 				return;
 			}
@@ -102,7 +102,7 @@ public class NPCMovementCoordinator {
 			deltaY = npc.getPosition().getY() - npc.getSpawnPosition().getY();
 		}
 
-		int radius = npc.getDefinition().getWalkRadius();	
+		int radius = npc.getWalkRadius();	
 
 		if((deltaX > radius) || (deltaY > radius)) {
 			coordinateState = CoordinateState.AWAY;

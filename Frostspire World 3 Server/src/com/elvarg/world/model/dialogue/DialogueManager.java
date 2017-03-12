@@ -158,7 +158,7 @@ public class DialogueManager {
 			int headChildId = startDialogueChildId - 2;
 			player.getPacketSender().sendNpcHeadOnInterface(dialogue.npcId(), headChildId);
 			player.getPacketSender().sendInterfaceAnimation(headChildId, dialogue.animation().getAnimation());
-			player.getPacketSender().sendString(startDialogueChildId - 1, NpcDefinition.forId(dialogue.npcId()) != null ? NpcDefinition.forId(dialogue.npcId()).getName().replaceAll("_", " ") : "");
+			player.getPacketSender().sendString(startDialogueChildId - 1, NpcDefinition.get(dialogue.npcId()) != null ? NpcDefinition.get(dialogue.npcId()).getName().replaceAll("_", " ") : "");
 			for (int i = 0; i < lines.length; i++) {
 				player.getPacketSender().sendString(startDialogueChildId + i, lines[i]);
 			}

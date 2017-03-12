@@ -141,12 +141,12 @@ public class NPC extends Character {
 
 	@Override
 	public int getAttackAnim() {
-		return getDefinition().getAttackAnim();
+		return getDefinition().getAttackAnimation();
 	}
 
 	@Override
 	public int getBlockAnim() {
-		return getDefinition().getDefenceAnim();
+		return getDefinition().getBlockAnimation();
 	}
 
 	/*
@@ -158,6 +158,7 @@ public class NPC extends Character {
 	private final int id;
 	private int hitpoints;
 	private Position spawnPosition;
+	private int walkRadius = 0;
 	
 	private int transformationId = -1;
 	private boolean isDying;
@@ -194,13 +195,21 @@ public class NPC extends Character {
 	public boolean isDying() {
 		return isDying;
 	}
+	
+	public int getWalkRadius() {
+		return walkRadius;
+	}
+	
+	public void setWalkRadius(int radius) {
+		this.walkRadius = radius;
+	}
 
 	public NPCMovementCoordinator getMovementCoordinator() {
 		return movementCoordinator;
 	}
 
 	public NpcDefinition getDefinition() {
-		return NpcDefinition.forId(id);
+		return NpcDefinition.get(id);
 	}
 	
 	public Position getSpawnPosition() {

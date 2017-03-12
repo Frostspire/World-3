@@ -8,6 +8,7 @@ import java.util.logging.Logger;
 
 import com.elvarg.cache.CacheLoader;
 import com.elvarg.cache.impl.definitions.ItemDefinition;
+import com.elvarg.cache.impl.definitions.NPCSpawns;
 import com.elvarg.cache.impl.definitions.NpcDefinition;
 import com.elvarg.cache.impl.definitions.ObjectDefinition;
 import com.elvarg.cache.impl.definitions.ShopDefinition;
@@ -91,7 +92,8 @@ public class Elvarg {
 			//DEFINITIONS
 			logger.info("Loading definitions...");
 			serviceLoader.execute(() -> ItemDefinition.init());
-			serviceLoader.execute(() -> NpcDefinition.init());
+			serviceLoader.execute(() -> NpcDefinition.loadNPCDefinitions());
+			serviceLoader.execute(() -> NPCSpawns.NPCSpawnsLoader().load());
 			serviceLoader.execute(() -> ObjectDefinition.init());
 			serviceLoader.execute(() -> RegionClipping.init());
 			serviceLoader.execute(() -> ObjectDefinition.parseObjects().load());

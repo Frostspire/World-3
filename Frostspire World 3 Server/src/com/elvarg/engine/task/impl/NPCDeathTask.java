@@ -55,7 +55,7 @@ public class NPCDeathTask extends Task {
 				DamageDealer damageDealer = npc.getCombat().getTopDamageDealer(true, null);
 				killer = damageDealer == null ? null : damageDealer.getPlayer();
 
-				npc.performAnimation(new Animation(npc.getDefinition().getDeathAnim()));
+				npc.performAnimation(new Animation(npc.getDefinition().getDeathAnimation()));
 
 				npc.getCombat().reset();
 

@@ -1,6 +1,7 @@
 package com.elvarg.net.packet.impl;
 
 import com.elvarg.cache.impl.definitions.ItemDefinition;
+import com.elvarg.cache.impl.definitions.NPCSpawns;
 import com.elvarg.cache.impl.definitions.NpcDefinition;
 import com.elvarg.cache.impl.definitions.ShopDefinition;
 import com.elvarg.cache.impl.definitions.WeaponInterfaces;
@@ -120,15 +121,18 @@ public class CommandPacketListener implements PacketListener {
 			if(parts[0].equalsIgnoreCase("npc")) {
 				World.getNpcAddQueue().add(new NPC(Integer.parseInt(parts[1]), player.getPosition().copy().add(1, 0)));
 			}
-			if(parts[0].equalsIgnoreCase("reloadnpcs")) {
+			if(parts[0].equalsIgnoreCase("reloadnpcspawn")) {
 				World.getNpcs().clear();
 				TaskManager.submit(new Task(3) {
 					@Override
 					protected void execute() {
-						NpcDefinition.init();
+						NPCSpawns.NPCSpawnsLoader().load();
 						stop();
 					}
 				});
+			}
+			if(parts[0].equalsIgnoreCase("reloadnpcdef")) {
+				NpcDefinition.loadNPCDefinitions();
 			}
 			if(parts[0].equalsIgnoreCase("save")) {
 				player.save();

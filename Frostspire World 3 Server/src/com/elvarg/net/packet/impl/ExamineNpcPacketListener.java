@@ -14,9 +14,9 @@ public class ExamineNpcPacketListener implements PacketListener {
 			return;
 		}
 		System.out.println("NPC: "+npc);
-		NpcDefinition npcDef = NpcDefinition.forId(npc);
+		NpcDefinition npcDef = NpcDefinition.get(npc);
 		if(npcDef != null) {
-			player.getPacketSender().sendMessage(npcDef.getExamine());
+			player.getPacketSender().sendMessage(npcDef.getDescription());
 		}
 	}
 

@@ -1,490 +1,311 @@
 package com.elvarg.cache.impl.definitions;
 
-import java.io.BufferedReader;
-import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.logging.Logger;
 
 import com.elvarg.GameConstants;
-import com.elvarg.util.JsonLoader;
-import com.elvarg.world.World;
-import com.elvarg.world.entity.impl.npc.NPC;
-import com.elvarg.world.model.Position;
 import com.google.gson.Gson;
-import com.google.gson.JsonObject;
 
 /**
- * A single npc definition.
  * 
- * @author lare96
+ * @author Stan
+ *
  */
+
 public class NpcDefinition {
 
 	/**
-	 * The amount of definitions.
+	 * {@link java.util.Logger}
 	 */
-	private static final int DEFINITION_AMOUNT = 14500;
-	
+	private static final Logger LOGGER = Logger.getLogger(NpcDefinition.class.getName());
+
 	/**
-	 * Parses the npc spawns
-	 * @return
+	 * Represents the maximum of NPCs that exists in this revision
 	 */
-	public static JsonLoader parse() {
-		return new JsonLoader() {
-			@Override
-			public void load(JsonObject reader, Gson builder) {
-				
-				int npcId = reader.get("npcId").getAsInt();
-				int x = reader.get("x").getAsInt();
-				int y = reader.get("y").getAsInt();
-				int z = 0;
-				
-				if(reader.has("z")) {
-					z = reader.get("z").getAsInt();
-				}
-			
-				World.getNpcAddQueue().add(new NPC(npcId, new Position(x, y, z)));
-			}
-			@Override
-			public String filePath() {
-				return GameConstants.DEFINITIONS_DIRECTORY + "npc_spawns.json";
-			}
-		};
+	public static final int MAX_NPC_AMOUNT = 14500;
+
+	/**
+	 * An array that stores all NPC definitions
+	 */
+	private static NpcDefinition[] definitions = new NpcDefinition[MAX_NPC_AMOUNT];
+
+	/**
+	 * A getter that fetches NPC Definitions for specific NPCs
+	 * 
+	 * @param id
+	 * @return {@code definitions}
+	 */
+	public static final NpcDefinition get(int id) {
+		if (id <= 0 || id >= MAX_NPC_AMOUNT)
+			return null;
+		return definitions[id];
 	}
 
-	public static void init() {
-
-		definitions = new NpcDefinition[DEFINITION_AMOUNT];
-
-		NpcDefinition definition = definitions[0];
+	/**
+	 * Loads NPC definitions from JSON file.
+	 */
+	public static void loadNPCDefinitions() {
+		LOGGER.info("Loading NPC definitions...");
 		try {
-			File file = new File(GameConstants.DEFINITIONS_DIRECTORY + "npcs.txt");
-			BufferedReader reader = new BufferedReader(new FileReader(file));
-			String line;
-
-			Position spawnPos = null;
-
-			while ((line = reader.readLine()) != null) {
-
-
-				if (line.contains("inish")) {
-					definitions[definition.id] = definition;
-
-					//Loaded the definitions for this npc.
-					//Let's spawn the npc if needed.
-					if(definition != null) {
-						if(spawnPos != null) {
-							NPC npc = new NPC(definition.getId(), spawnPos);
-							if(definition.getHitpoints() > 0) {
-								npc.setHitpoints(definition.getHitpoints());
-							}
-							World.getNpcAddQueue().add(npc);
-							spawnPos = null;
-						}
-					}
-
-					continue;
-				}
-
-
-				String[] args = line.split(": ");
-				if (args.length <= 1)
-					continue;
-				String token = args[0], value = args[1];				
-				switch (token.toLowerCase()) {
-				case "npc":
-					int id = Integer.valueOf(value);
-					
-					//If definitions already exist -
-					//We're just spawning a new npc.
-					//ONLY create new definition if there isn't one already.
-					if(forId(id) == null) {
-						definition = new NpcDefinition();
-						definition.id = id;
-					}
-					
-					break;
-				case "name":
-					if(value == null)
-						continue;
-					definition.name = value;
-					break;
-				case "examine":
-					definition.examine = value;
-					break;
-				case "spawn-position":
-					String[] coordinates = value.split(":");
-					int x = Integer.parseInt(coordinates[0]);
-					int y = Integer.parseInt(coordinates[1]);
-					int z = coordinates.length == 3 ? Integer.parseInt(coordinates[2]) : 0;
-					spawnPos = new Position(x, y, z);
-					break;					
-				case "size":
-					definition.size = Integer.parseInt(value);
-					break;
-				case "walk-radius":
-					definition.walkRadius = Integer.parseInt(value);
-					break;
-				case "combat-follow":
-					definition.combatFollowDistance = Integer.parseInt(value);
-					break;
-				case "aggressive-distance":
-					definition.aggressionDistance = Integer.parseInt(value);
-					break;
-				case "attackable":
-					definition.attackable = Boolean.parseBoolean(value);
-					break;
-				case "retreats":
-					definition.retreats = Boolean.parseBoolean(value);
-					break;
-				case "poisonous":
-					definition.poisonous = Boolean.parseBoolean(value);
-					break;
-				case "respawn":
-					definition.respawn = Integer.parseInt(value);
-					break;
-				case "maxhit":
-					definition.maxHit = Integer.parseInt(value);
-					break;
-				case "hitpoints":
-					definition.hitpoints = Integer.parseInt(value);
-					break;
-				case "attackspeed":
-					definition.attackSpeed = Integer.parseInt(value);
-					break;
-				case "attackanim":
-					definition.attackAnim = Integer.parseInt(value);
-					break;
-				case "defenceanim":
-					definition.defenceAnim = Integer.parseInt(value);
-					break;
-				case "deathanim":
-					definition.deathAnim = Integer.parseInt(value);
-					break;
-				case "combatlevel":
-					definition.combatLevel = Integer.parseInt(value);
-					break;
-				case "attacklevel":
-					definition.attackLevel = Integer.parseInt(value);
-					break;
-				case "strengthlevel":
-					definition.strengthLevel = Integer.parseInt(value);
-					break;
-				case "rangedlevel":
-					definition.rangedLevel = Integer.parseInt(value);
-					break;
-				case "magiclevel":
-					definition.magicLevel = Integer.parseInt(value);
-					break;
-				case "defencemelee":
-					definition.defenceMelee = Integer.parseInt(value);
-					break;
-				case "defencerange":
-					definition.defenceRange = Integer.parseInt(value);
-					break;
-				case "defencemage":
-					definition.defenceMage = Integer.parseInt(value);
-					break;
-				case "slayerlevel":
-					definition.slayerLevel = Integer.parseInt(value);
-					break;
-				}
+			NpcDefinition[] in = new Gson().fromJson(new FileReader(GameConstants.DEFINITIONS_DIRECTORY + "NpcDefinitions.json"),
+					NpcDefinition[].class);
+			for (NpcDefinition defs : in) {
+				definitions[defs.id] = defs;
 			}
-
-			reader.close();
 		} catch (IOException e) {
+			System.out.println("Error loading NPC Definitions!");
 			e.printStackTrace();
 		}
-	}	
-
-	/** An array containing all of the npc definitions. */
-	private static NpcDefinition[] definitions;
-
-	public static NpcDefinition forId(int id) {
-		return id > definitions.length ? null : definitions[id];
+		LOGGER.info(definitions.length + " NPC definitions loaded...");
 	}
 
-	/** The id of the npc. */
+	/**
+	 * Represents the NPC id
+	 */
 	private int id;
 
-	/** The name of the npc. */
+	/**
+	 * Represents the name of the NPC
+	 */
 	private String name;
 
-	/** The examine of the npc. */
-	private String examine;
-
-	/** The npc size. */
-	private int size = 1;
-
-	/** Does the npc randomly walk? */
-	private int walkRadius;
-
-	/** If the npc is attackable. */
-	private boolean attackable;
-
-	/** If the npc is aggressive. */
-	private boolean aggressive;
-
-	/** If the npc retreats. */
-	private boolean retreats;
-
-	/** If the npc poisons. */
-	private boolean poisonous;
-
-	/** Time it takes for this npc to respawn. */
-	private int respawn;
-
-	/** The max hit of this npc. */
-	private int maxHit;
-
-	/** The amount of hp this npc has. */
-	private int hitpoints;
-
-	/** The attack speed of this npc. */
-	private int attackSpeed;
-
-	/** The attack animation of this npc. */
-	private int attackAnim;
-
-	/** The defence animation of this npc. */
-	private int defenceAnim;
-
-	/** The death animation of this npc. */
-	private int deathAnim;
-
-	/** This npc's combat level */
-	private int combatLevel;
+	/**
+	 * Represents the description of the NPC
+	 */
+	private String description;
 	
-	/** This npc's attack bonus. */
-	private int attackLevel;
-	private int strengthLevel;
-	private int rangedLevel;
-	private int magicLevel;
+	/**
+	 * Represents the NPCs size
+	 */
+	private int size;
 
-	/** This npc's melee resistance. */
-	private int defenceMelee;
+	/**
+	 * Field that represents if this NPC is attackable or not;
+	 */
+	private boolean attackable;
+	
+	/**
+	 * Represents the combat level of the NPC
+	 */
+	private int combatLevel;
 
-	/** This npc's range resistance. */
-	private int defenceRange;
+	/**
+	 * Field that represents this NPCs aggressiveness;
+	 */
+	private boolean aggressive;
+	
+	/**
+	 * Field that represents if this NPC is poisonous or not
+	 */
+	private boolean poisonous;
+	
+	/**
+	 * Field that represents if this NPC is undead or not;
+	 */
+	private boolean undead;
+	
+	/**
+	 * Field that represents if this NPC is immune to poison or not;
+	 */
+	private boolean poisonImmunity;
+	
+	/**
+	 * Field that represents if this NPC is immune to poison or not;
+	 */
+	private boolean venomImmunity;
 
-	/** This npc's defence resistance. */
-	private int defenceMage;
-
-	/** This npc's slayer level required to attack. */
+	/**
+	 * Represents the slayer level required to kill this NPC
+	 */
 	private int slayerLevel;
 	
-	/** This npc's aggression distance */
+	/**
+	 * Represents the amount of hitpoints this NPC has
+	 */
+	private int hitpoints;
+	
+	/**
+	 * Represents the attack speed for this NPC
+	 */
+	private int attackSpeed;
+	
+	/**
+	 * Represents this NPC's max hit
+	 */
+	private int maxHit;
+	
+	/**
+	 * Represents the NPCs skills
+	 */
+	private int[] skills;
+
+	/**
+	 * A list that represents the NPCs bonuses
+	 */
+	private int[] bonusses;
+	
+	/**
+	 * Represents the radius the NPC will walk around it's spawn
+	 */
+	private int walkRadius;
+	
+	/**
+	 * Represents the distance until the NPC is no longer aggressive
+	 */
 	private int aggressionDistance;
 	
-	/** This npc's maximum follow distance in combat **/
-	private int combatFollowDistance = 7; //Default is 7
+	/**
+	 * Represents the maximum distance the NPC will follow a player in combat
+	 */
+	private int combatFollowDistance = 7;
+	
+	/**
+	 * Represents the amount of time until the NPC respawns
+	 */
+	private int respawn;
+	
+	/**
+	 * Represents the id of the NPC's attack animation
+	 */
+	private int attackAnimation;
+	
+	/**
+	 * Represents the id of the NPC's block animation
+	 */
+	private int blockAnimation;
+	
+	/**
+	 * Represents the id of the NPC's death animation
+	 */
+	private int deathAnimation;
 	
 	public int getId() {
-		return id;
-	}
-
-	public void setId(int id) {
-		this.id = id;
+		return this.id;
 	}
 
 	public String getName() {
-		return name;
+		return this.name;
 	}
 
-	public void setName(String name) {
-		this.name = name;
+	public String getDescription() {
+		return this.description;
 	}
-
-	public String getExamine() {
-		return examine;
-	}
-
-	public void setExamine(String examine) {
-		this.examine = examine;
-	}
-
-	public boolean isAttackable() {
-		return attackable;
-	}
-
-	public void setAttackable(boolean attackable) {
-		this.attackable = attackable;
-	}
-
+	
 	public int getSize() {
-		return size;
+		return this.size;
 	}
-
-	public void setSize(int size) {
-		this.size = size;
-	}
-
-	public boolean doesRetreat() {
-		return retreats;
-	}
-
-	public void setRetreats(boolean retreats) {
-		this.retreats = retreats;
-	}
-
-	public boolean isPoisonous() {
-		return poisonous;
-	}
-
-	public void setPoisonous(boolean poisonous) {
-		this.poisonous = poisonous;
-	}
-
-	public int getRespawn() {
-		return respawn;
-	}
-
-	public void setRespawn(int respawn) {
-		this.respawn = respawn;
-	}
-
-	public int getMaxHit() {
-		return maxHit;
-	}
-
-	public void setMaxHit(int maxHit) {
-		this.maxHit = maxHit;
-	}
-
-	public int getHitpoints() {
-		return hitpoints;
-	}
-
-	public void setHitpoints(int hitpoints) {
-		this.hitpoints = hitpoints;
-	}
-
-	public int getAttackSpeed() {
-		return attackSpeed;
-	}
-
-	public void setAttackSpeed(int attackSpeed) {
-		this.attackSpeed = attackSpeed;
-	}
-
-	public int getAttackAnim() {
-		return attackAnim;
-	}
-
-	public void setAttackAnim(int attackAnim) {
-		this.attackAnim = attackAnim;
-	}
-
-	public int getDefenceAnim() {
-		return defenceAnim;
-	}
-
-	public void setDefenceAnim(int defenceAnim) {
-		this.defenceAnim = defenceAnim;
-	}
-
-	public int getDeathAnim() {
-		return deathAnim;
-	}
-
-	public void setDeathAnim(int deathAnim) {
-		this.deathAnim = deathAnim;
-	}
-
-	public int getAttackLevel() {
-		return attackLevel;
-	}
-
-	public void setAttackLevel(int attackLevel) {
-		this.attackLevel = attackLevel;
-	}
-
-	public int getStrengthLevel() {
-		return strengthLevel;
-	}
-
-	public void setStrengthLevel(int strengthLevel) {
-		this.strengthLevel = strengthLevel;
-	}
-
-	public int getRangedLevel() {
-		return rangedLevel;
-	}
-
-	public void setRangedLevel(int rangedLevel) {
-		this.rangedLevel = rangedLevel;
-	}
-
-	public int getMagicLevel() {
-		return magicLevel;
-	}
-
-	public void setMagicLevel(int magicLevel) {
-		this.magicLevel = magicLevel;
-	}
-
-	public int getDefenceMelee() {
-		return defenceMelee;
-	}
-
-	public void setDefenceMelee(int defenceMelee) {
-		this.defenceMelee = defenceMelee;
-	}
-
-	public int getDefenceRange() {
-		return defenceRange;
-	}
-
-	public void setDefenceRange(int defenceRange) {
-		this.defenceRange = defenceRange;
-	}
-
-	public int getDefenceMage() {
-		return defenceMage;
-	}
-
-	public void setDefenceMage(int defenceMage) {
-		this.defenceMage = defenceMage;
-	}
-
-	public int getSlayerLevel() {
-		return slayerLevel;
-	}
-
-	public void setSlayerLevel(int slayerLevel) {
-		this.slayerLevel = slayerLevel;
-	}
-
-	public int getWalkRadius() {
-		return walkRadius;
-	}
-
-	public void setWalkRadius(int walkRadius) {
-		this.walkRadius = walkRadius;
+	
+	public boolean isAttackable() {
+		return this.attackable;
 	}
 
 	public int getCombatLevel() {
-		return combatLevel;
+		return this.combatLevel;
 	}
 
-	public void setCombatLevel(int combatLevel) {
-		this.combatLevel = combatLevel;
+	public boolean isAggressive() {
+		return this.aggressive;
+	}
+	
+	public boolean isPoisonous() {
+		return this.poisonous;
+	}
+	
+	public boolean isUndead() {
+		return this.undead;
+	}
+	
+	public boolean isImmuneToPoison() {
+		return this.poisonImmunity;
+	}
+	
+	public boolean isImmuneToVenom() {
+		return this.venomImmunity;
+	}
+	
+	public int getSlayerLevel() {
+		return this.slayerLevel;
+	}
+	
+	public int getHitpoints() {
+		return this.hitpoints;
+	}
+	
+	public int getAttackSpeed() {
+		return this.attackSpeed;
+	}
+	
+	public int getMaxHit() {
+		return this.maxHit;
 	}
 
+	public int[] getSkills() {
+		return this.skills;
+	}
+
+	public int[] getBonuses() {
+		return this.bonusses;
+	}
+	
+	public int getWalkRadius() {
+		return this.walkRadius;
+	}
+	
 	public int getAggressionDistance() {
-		return aggressionDistance;
+		return this.aggressionDistance;
 	}
-
-	public void setAggressionDistance(int aggressionDistance) {
-		this.aggressionDistance = aggressionDistance;
-	}
-
+	
 	public int getCombatFollowDistance() {
-		return combatFollowDistance;
+		return this.combatFollowDistance;
 	}
-
-	public void setCombatFollowDistance(int combatFollowDistance) {
-		this.combatFollowDistance = combatFollowDistance;
+	
+	public int getRespawn() {
+		return this.respawn;
+	}
+	
+	public int getAttackAnimation() {
+		return this.attackAnimation;
+	}
+	
+	public int getBlockAnimation() {
+		return this.blockAnimation;
+	}
+	
+	public int getDeathAnimation() {
+		return this.deathAnimation;
+	}
+	
+	public int getAttackLevel() {
+		return this.skills[0];
+	}
+	
+	public int getStrengthLevel() {
+		return this.skills[1];
+	}
+	
+	public int getDefenceLevel() {
+		return this.skills[2];
+	}
+	
+	public int getRangedLevel() {
+		return this.skills[3];
+	}
+	
+	public int getMagicLevel() {
+		return this.skills[4];
+	}
+	
+	public int getDefenceMelee() {
+		return (int)((this.bonusses[5] + this.bonusses[6] + this.bonusses[7]) / 3);
+	}
+	
+	public int getDefenceMage() {
+		return this.bonusses[8];
+	}
+	
+	public int getDefenceRange() {
+		return this.bonusses[9];
 	}
 
 }
