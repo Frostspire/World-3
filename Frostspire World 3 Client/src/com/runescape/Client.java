@@ -9672,7 +9672,7 @@ public class Client extends GameApplet {
 						if (colour == 49152)
 							colour = 0xffffff;
 					}
-					if (frameMode != ScreenMode.FIXED) {
+					//if (frameMode != ScreenMode.FIXED) {
 						if ((backDialogueId != -1 || dialogueId != -1
 								|| childInterface.defaultText
 								.contains("Click here to continue"))
@@ -9685,7 +9685,7 @@ public class Client extends GameApplet {
 								colour = 0xffffff;
 							}
 						}
-					}
+					//}
 					if ((childInterface.parent == 1151)
 							|| (childInterface.parent == 12855)) {
 						switch (colour) {
