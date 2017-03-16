@@ -2,7 +2,6 @@ package com.runescape.cache.graphics;
 
 import java.io.ByteArrayInputStream;
 import java.io.DataInputStream;
-import java.io.File;
 import java.io.IOException;
 import java.util.logging.Logger;
 import java.util.zip.GZIPInputStream;

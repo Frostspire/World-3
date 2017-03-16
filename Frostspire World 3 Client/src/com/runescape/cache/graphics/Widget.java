@@ -333,6 +333,7 @@ public final class Widget {
 		spriteCache = null;
 	}
 	
+	@SuppressWarnings("unused")
 	private static void levelUpInterfaces() {
 		Widget attack = interfaceCache[6247];
 		Widget defence = interfaceCache[6253];
@@ -3754,6 +3755,7 @@ public final class Widget {
 		Tab.enabledSprite = imageLoader(i2, name);
 	}
 	
+	@SuppressWarnings("unused")
 	private static void specialBars() {
 		for(int id : SPECIAL_BARS) {
 			specialBar(id);

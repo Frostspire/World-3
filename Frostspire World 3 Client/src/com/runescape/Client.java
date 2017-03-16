@@ -11,7 +11,6 @@ import java.awt.image.BufferedImage;
 import java.io.BufferedInputStream;
 import java.io.ByteArrayInputStream;
 import java.io.DataInputStream;
-import java.io.DataOutputStream;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
@@ -68,7 +67,6 @@ import com.runescape.entity.model.Model;
 import com.runescape.io.Buffer;
 import com.runescape.io.ByteBuffer;
 import com.runescape.io.jaggrab.JagGrab;
-import com.runescape.io.jaggrab.JagGrabConstants;
 import com.runescape.io.packets.outgoing.OutgoingPacket;
 import com.runescape.io.packets.outgoing.impl.AddFriend;
 import com.runescape.io.packets.outgoing.impl.AddIgnore;
@@ -79,7 +77,6 @@ import com.runescape.io.packets.outgoing.impl.ChangeAppearance;
 import com.runescape.io.packets.outgoing.impl.Chat;
 import com.runescape.io.packets.outgoing.impl.ChatSettings;
 import com.runescape.io.packets.outgoing.impl.ChatboxDuel;
-import com.runescape.io.packets.outgoing.impl.ClearMinimapFlag;
 import com.runescape.io.packets.outgoing.impl.ClickButton;
 import com.runescape.io.packets.outgoing.impl.ClickButtonAction;
 import com.runescape.io.packets.outgoing.impl.CloseInterface;
@@ -1490,6 +1487,7 @@ public class Client extends GameApplet {
 			return true;
 	}
 
+	@SuppressWarnings("unused")
 	private void showNPCs(boolean flag) {
 		for (int j = 0; j < npcCount; j++) {
 			Npc npc = npcs[npcIndices[j]];
@@ -3359,6 +3357,7 @@ public class Client extends GameApplet {
 			return true;
 	}
 
+	@SuppressWarnings("unused")
 	private void showPlayers(int j) {
 		if (localPlayer.x >> 7 == destinationX && localPlayer.y >> 7 == destY)
 			destinationX = 0;
@@ -4058,6 +4057,7 @@ public class Client extends GameApplet {
 			headIconsHint[0].drawSprite(spriteDrawX - 12, spriteDrawY - 28);
 	}
 
+	@SuppressWarnings("unused")
 	private void mainGameProcessor() {
 		refreshFrameSize();
 		if (systemUpdateTime > 1) {
@@ -4668,6 +4668,7 @@ public class Client extends GameApplet {
 		minimapZoom = 0;
 	}
 
+	@SuppressWarnings("unused")
 	private void showInterface(int interfaceId) {
 
 		resetAnimation(interfaceId);
@@ -6341,6 +6342,7 @@ public class Client extends GameApplet {
 						removeIgnore(l3);
 					}
 					if (friendsListAction == 6) {
+						@SuppressWarnings("unused")
 						long l3 = StringUtils.encodeBase37(promptInput);
 						//	chatJoin(l3);
 					}
@@ -11284,6 +11286,7 @@ public class Client extends GameApplet {
 		sendPacket(new DeleteFriend(name));
 	}
 
+	@SuppressWarnings("unused")
 	private void removeFriendFromList(long name) {
 		for (int index = 0; index < friendsCount; index++) {
 			if (friendsListAsLongs[index] != name)
@@ -15037,6 +15040,7 @@ public class Client extends GameApplet {
 	private int dialogueId;
 	private final int[] maximumLevels;
 	private final int[] anIntArray1045;
+	@SuppressWarnings("unused")
 	private int member;
 	private boolean maleCharacter;
 	private int anInt1048;
@@ -15087,6 +15091,7 @@ public class Client extends GameApplet {
 	private Sprite[] headIcons;
 	private Sprite[] skullIcons;
 	private Sprite[] headIconsHint;
+	@SuppressWarnings("unused")
 	private static int anInt1097;
 	private int x;
 	private int y;
@@ -15133,6 +15138,7 @@ public class Client extends GameApplet {
 	private IndexedImage[] titleIndexedImages;
 	private int unreadMessages;
 	private static int anInt1155;
+	@SuppressWarnings("unused")
 	private static boolean fpsOn;
 	public static boolean loggedIn;
 	private boolean canMute;
@@ -15206,7 +15212,9 @@ public class Client extends GameApplet {
 	private int[] localRegionIds;
 	private int[] localRegionMapIds;
 	private int[] localRegionLandscapeIds;
+	@SuppressWarnings("unused")
 	private int anInt1237;
+	@SuppressWarnings("unused")
 	private int anInt1238;
 	public final int anInt1239 = 100;
 	private final int[] privateMessageIds;
@@ -15231,6 +15239,7 @@ public class Client extends GameApplet {
 	private int destinationX;
 	private int destY;
 	private Sprite minimapImage;
+	@SuppressWarnings("unused")
 	private int anInt1264;
 	private int anInt1265;
 	private String firstLoginMessage;

@@ -25,6 +25,7 @@ public final class ResourceProvider extends Provider implements Runnable {
 	private int maximumPriority;
 	public String loadingMessage;
 	private int deadTime;
+	@SuppressWarnings("unused")
 	private long lastRequestTime;
 	private int[] landscapes;
 	private final byte[] payload;

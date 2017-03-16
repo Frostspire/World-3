@@ -45,6 +45,7 @@ public final class Player extends Mob {
 	public String clanName = "None";
 	public int rights;
 
+	@SuppressWarnings("unused")
 	public Model getRotatedModel() {
 
 		if (!visible) {
