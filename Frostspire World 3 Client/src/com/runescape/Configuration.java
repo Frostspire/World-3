@@ -22,7 +22,7 @@ public final class Configuration {
 	/**
 	 * The address of the server that the client will be connecting to
 	 */
-	public static String server_address = "173.240.37.2"; // 173.240.37.2
+	public static String server_address = "localhost"; // 173.240.37.2
 
 
 	public static final String CACHE_DIRECTORY = System.getProperty("user.home") + File.separator + "Cache/";
