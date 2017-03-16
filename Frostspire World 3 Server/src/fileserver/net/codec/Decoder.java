@@ -2,7 +2,7 @@ package fileserver.net.codec;
 
 import java.util.List;
 
-import com.elvarg.Elvarg;
+import com.frostspire.GameLoader;
 
 import fileserver.FileServerConstants;
 import io.netty.buffer.ByteBuf;
@@ -54,7 +54,7 @@ public class Decoder extends ByteToMessageDecoder {
 			final String path = new String(pathBuffer, FileServerConstants.JAGGRAB_CHARSET);
 
 			//Attempt to get the file that's been requested..
-			final ByteBuf file = Elvarg.getCache().request(path);
+			final ByteBuf file = GameLoader.getCache().request(path);
 
 			//If we loaded the file, send it.
 			//Otherwise close the channel.
@@ -97,7 +97,7 @@ public class Decoder extends ByteToMessageDecoder {
 			//Attempt to load the requested file..
 			ByteBuf file = null;
 			try {
-				file = Elvarg.getCache().getFile(fileType, fileId);
+				file = GameLoader.getCache().getFile(fileType, fileId);
 			} catch (Exception e) {
 				e.printStackTrace();
 			}

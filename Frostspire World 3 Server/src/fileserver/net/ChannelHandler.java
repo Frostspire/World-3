@@ -1,6 +1,6 @@
 package fileserver.net;
 
-import com.elvarg.net.NetworkConstants;
+import com.frostspire.net.NetworkConstants;
 import com.google.common.base.Objects;
 
 import fileserver.FileServer;

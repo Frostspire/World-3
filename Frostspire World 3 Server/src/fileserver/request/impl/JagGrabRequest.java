@@ -1,6 +1,6 @@
 package fileserver.request.impl;
 
-import com.elvarg.Elvarg;
+import com.frostspire.GameLoader;
 
 import fileserver.request.Request;
 import fileserver.response.impl.JagGrabResponse;
@@ -33,7 +33,7 @@ public final class JagGrabRequest extends Request {
 	public void dispatch() {
 		
 		//Attempt to get the file that's been requested..
-		ByteBuf file = Elvarg.getCache().request(path);
+		ByteBuf file = GameLoader.getCache().request(path);
 
 		//If we loaded the file, send it.
 		//Otherwise close the channel.

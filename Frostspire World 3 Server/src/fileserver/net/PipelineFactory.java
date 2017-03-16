@@ -1,6 +1,6 @@
 package fileserver.net;
 
-import com.elvarg.net.NetworkConstants;
+import com.frostspire.net.NetworkConstants;
 
 import fileserver.net.codec.Decoder;
 import io.netty.channel.ChannelInitializer;

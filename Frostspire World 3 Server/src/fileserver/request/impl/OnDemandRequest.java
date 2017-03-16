@@ -2,7 +2,7 @@ package fileserver.request.impl;
 
 import java.io.IOException;
 
-import com.elvarg.Elvarg;
+import com.frostspire.GameLoader;
 
 import fileserver.FileServerConstants;
 import fileserver.request.Request;
@@ -46,7 +46,7 @@ public final class OnDemandRequest extends Request {
 		//Attempt to load the requested file..
 		ByteBuf file = null;
 		try {
-			file = Elvarg.getCache().getFile(fileType, fileId);			
+			file = GameLoader.getCache().getFile(fileType, fileId);			
 		} catch (IOException e) {
 			e.printStackTrace();
 		}

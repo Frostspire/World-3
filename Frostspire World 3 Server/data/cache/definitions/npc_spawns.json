@@ -1,4 +1,10 @@
 [
+	{
+        "npcId": 239,
+        "x": 2270,
+		"y": 4703,
+		"walk-radius": 3
+    },
 	//Home NPCS
 	//Emblem Trader
     {

@@ -22,7 +22,7 @@ public final class Configuration {
 	/**
 	 * The address of the server that the client will be connecting to
 	 */
-	public static String server_address = "localhost"; // 173.240.37.2
+	public static String server_address = "173.240.37.2"; // 173.240.37.2
 
 
 	public static final String CACHE_DIRECTORY = System.getProperty("user.home") + File.separator + "Cache/";
@@ -47,7 +47,7 @@ public final class Configuration {
 	/**
 	 * A string which indicates the Client's name.
 	 */
-	public static final String CLIENT_NAME = "Elvarg";
+	public static final String CLIENT_NAME = "Frostspire";
 
 	/**
 	 * Dumps map region images when new regions are loaded.

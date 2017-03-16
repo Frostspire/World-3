@@ -5371,6 +5371,10 @@
     "hitpoints": 240,
     "attackSpeed": 7,
     "maxHit": 25,
+    "respawn": 50,
+    "attackAnimation": 80,
+    "blockAnimation": 89,
+    "deathAnimation": 92,
     "skills": [
       240,
       240,
